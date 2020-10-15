@@ -43,6 +43,9 @@ export default {
 			loading: true,
 		}
 	},
+	mounted() {
+		this.getData(this.date.month(),this.date.year())
+	},
 	watch: {
 		date: function(newDate,oldDate){
 			this.getData(newDate.month(),newDate.year())
