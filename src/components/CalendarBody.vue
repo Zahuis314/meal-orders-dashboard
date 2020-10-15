@@ -25,6 +25,35 @@ export default {
 		}
 	},
 	computed:{
+		calendar: function(){
+			var moment = this.moment
+			var current_day = moment()
+			var startDay = this.date.clone().startOf('month');
+			
+			// console.log(startDay);
+			var month = startDay.month();
+			startDay.startOf('week');
+			var endDay = this.date.clone().endOf('month').endOf('week');
+			// console.log(startDay);
+			var calendar = [];
+			var index = startDay.clone();
+			while (index.isBefore(endDay, 'day') | index.isSame(endDay,'day')) {
+				calendar.push(
+					new Array(7).fill(0).map(
+						function(n, i) {
+							var current = index.add(1,'day')
+							return {
+								date: current.date(),
+								month: current.month(),
+								year: current.year(),
+								actual_month: month==current.month(),
+								is_today: current.isSame(current_day,'day')};
+						}
+					)
+				);
+			}
+			return calendar;
+		},
 		weekdays: function(){
 			var moment = this.moment
 			return Array.apply(null,Array(7)).map(function(_,i){
