@@ -6,6 +6,17 @@
 				<p>{{weekday.format('ddd')}}</p>
 			</div>
 		</div>
+		<div class="week-block" v-for="(week,index) in calendar" :key=index>
+			<CalendarDay
+				v-for="(day,indexD) in week" :key="indexD"
+				:date="day.date"
+				:month="day.month"
+				:year="day.year"
+				:actual_month="day.actual_month"
+				:is_today="day.is_today"
+				class="day-block"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -74,5 +85,9 @@ export default {
 	.weekday{
 		// float: left;
 		text-align: center;
+	}
+	.week-block{
+		display:grid;
+		grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.5%;
 	}
 </style>
