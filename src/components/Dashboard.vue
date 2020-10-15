@@ -1,6 +1,6 @@
 <template>
-  <div id="dash_board">
-    <div style="width: 100%;">
+  <div id="dashboard">
+    <div id='dashboard-header'>
       <div id="dashboard-title">
         <span>{{title}}</span>
       </div>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-  html{
+  #dashboard{
     background-color: rgb(246,247,251);
     font-family: 'Roboto';
     #dashboard-title {
@@ -38,10 +38,11 @@ export default {
       // float: left;
       color: $black-text-color;
       display: inline-block;
+      margin: 46px;
     }
     .dashboard-tab-selector{
-      display: inline-block;
-      // float: right;
+      float: right;
+      margin: 40px;
       .dashboard-tab-selector-button{
           border-radius: 28px;
           padding: 10px 40px;
@@ -51,6 +52,7 @@ export default {
           width: 180px;
           height: 55px;
           font-size: 18px;
+          margin-left: 15px;
       }
       .dashboard-active-tab{
         background: $primary;
