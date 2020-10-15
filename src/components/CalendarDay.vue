@@ -1,19 +1,18 @@
 <template>
-  <div id="app">
-    <Dashboard />
+  <div class="calendar-day">
+
   </div>
 </template>
 
 <script>
-import Dashboard from './components/Dashboard.vue'
 
 export default {
-  name: 'App',
+  name: 'CalendarDay',
   components: {
-    Dashboard
   }
 }
 </script>
 
 <style lang="scss">
+  
 </style>
