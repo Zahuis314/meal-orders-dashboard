@@ -30,6 +30,10 @@ export default {
 	},
 	props: {
 		date: Object,
+		startSunday: {
+			type: Boolean,
+			default: true
+		}
 	},
 	data() {
 		return {
@@ -44,7 +48,11 @@ export default {
 			// console.log(startDay);
 			var month = startDay.month();
 			startDay.startOf('week');
+			if(this.startSunday)
+				startDay.subtract(1,'day');
 			var endDay = this.date.clone().endOf('month').endOf('week');
+			if(this.startSunday)
+				endDay.subtract(1,'day')
 			// console.log(startDay);
 			var calendar = [];
 			var index = startDay.clone();
@@ -67,8 +75,9 @@ export default {
 		},
 		weekdays: function(){
 			var moment = this.moment
+			var offset = this.startSunday?0:1
 			return Array.apply(null,Array(7)).map(function(_,i){
-				return moment(i,'e').startOf('week').isoWeekday(i+1)
+				return moment(i,'e').startOf('week').isoWeekday(i+offset)
 				// return moment().format('ddd')
 			})
 		}

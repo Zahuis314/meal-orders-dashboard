@@ -8,6 +8,7 @@
 		/>
 		<CalendarBody
 			:date='date'
+			:startSunday='true'
 			/>
 	</div>
 </template>
