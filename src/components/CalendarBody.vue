@@ -1,5 +1,5 @@
 <template>
-	<div id="calendar-body" class="container">
+	<div id="calendar-body" class="container" v-if="!loading">
 
 		<div class="weekdays">
 			<div class="weekday" v-for="weekday in weekdays" :key="weekday.format('[WeekDay:]d')">
@@ -40,6 +40,7 @@ export default {
 	data() {
 		return {
 			daysData: [],
+			loading: true,
 		}
 	},
 	watch: {
@@ -50,9 +51,11 @@ export default {
 	methods:{
 		getData: function(month,year){
 			var that = this
+			that.loading=true;
 			axios.get(`http://localhost:3000/meals?month=${month}`)
 				.then(function(response){
 					that.daysData = response.data;
+					that.loading = false;
 				});
 		},
 	},
