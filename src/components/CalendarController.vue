@@ -35,5 +35,11 @@ export default {
 </script>
 
 <style lang="scss">
+	#calendar-controller{  
+		float: right;
+		>div{
+			display: inline-block;
+		}
   
+	}
 </style>

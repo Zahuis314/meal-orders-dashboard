@@ -41,5 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
-  
+	#calendar-header{
+		>div{
+			display: inline-block;
+		}
+	}
 </style>
