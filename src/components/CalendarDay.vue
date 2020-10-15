@@ -17,7 +17,7 @@ export default {
   name: 'CalendarDay',
   components: {
   },
-  props: ['date','month','year','actual_month','is_today'],
+  props: ['date','month','year','data','actual_month','is_today'],
 }
 </script>
 

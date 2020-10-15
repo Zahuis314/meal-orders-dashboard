@@ -14,6 +14,7 @@
 				:year="day.year"
 				:actual_month="day.actual_month"
 				:is_today="day.is_today"
+				:data="day.actual_month?daysData[day.date-1]:NaN"
 				class="day-block"
 			/>
 		</div>
@@ -22,6 +23,7 @@
 
 <script>
 import CalendarDay from './CalendarDay.vue'
+import axios from 'axios'
 
 export default {
 	name: 'CalendarBody',
@@ -37,7 +39,22 @@ export default {
 	},
 	data() {
 		return {
+			daysData: [],
 		}
+	},
+	watch: {
+		date: function(newDate,oldDate){
+			this.getData(newDate.month(),newDate.year())
+		}
+	},
+	methods:{
+		getData: function(month,year){
+			var that = this
+			axios.get(`http://localhost:3000/meals?month=${month}`)
+				.then(function(response){
+					that.daysData = response.data;
+				});
+		},
 	},
 	computed:{
 		calendar: function(){
