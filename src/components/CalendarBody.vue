@@ -55,7 +55,10 @@ export default {
 		getData: function(month,year){
 			var that = this
 			that.loading=true;
-			axios.get(`http://localhost:3000/meals?month=${month}`)
+			var url = new URL(this.config.api.getDataUrl,'http://localhost:3000');
+			url.searchParams.set('year',year)
+			url.searchParams.set('month',month)
+			axios.get(url.href)
 				.then(function(response){
 					that.daysData = response.data;
 					that.loading = false;
