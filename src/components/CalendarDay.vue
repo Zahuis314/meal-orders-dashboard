@@ -36,16 +36,16 @@
 					<span>No orders yet</span>
 				</div>
 			</div>
-			<a class="calendar-day-operation" href="#" v-if="data.is_blocked">
+			<a class="calendar-day-operation" :href="getUnBlockUrl()" v-if="data.is_blocked">
 				<img src="../assets/red-block.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" href="#" v-else-if="data.meals==0">
+			<a class="calendar-day-operation" :href="getBlockUrl()" v-else-if="data.meals==0">
 				<img src="../assets/white-block.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" href="#" v-else-if="data.is_stopped">
+			<a class="calendar-day-operation" :href="getContinueUrl()" v-else-if="data.is_stopped">
 				<img src="../assets/red-hand.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" href="#" v-else-if="data.is_in_service">
+			<a class="calendar-day-operation" :href="getStopUrl()" v-else-if="data.is_in_service">
 				<img src="../assets/white-hand.svg" alt="" height="20">
 			</a>
 		</div>
@@ -66,6 +66,18 @@ export default {
 			url.searchParams.set('month',this.month)
 			url.searchParams.set('year',this.year)
 			return url;
+		},
+		getBlockUrl: function(){
+			return this.contructUrl(this.config.api.baseUrl,this.config.api.blockUrl).href;
+		},
+		getUnBlockUrl: function(){
+			return this.contructUrl(this.config.api.baseUrl,this.config.api.unBlockUrl).href;
+		},
+		getContinueUrl: function(){
+			return this.contructUrl(this.config.api.baseUrl,this.config.api.continueUrl).href;
+		},
+		getStopUrl: function(){
+			return this.contructUrl(this.config.api.baseUrl,this.config.api.stopUrl).href;
 		},
 		getDetailsUrl: function(){
 			return this.contructUrl(this.config.api.baseUrl,this.config.api.detailsUrl).href;
