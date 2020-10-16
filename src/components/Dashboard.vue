@@ -1,6 +1,6 @@
 <template>
 	<div id="dashboard">
-		<div id='dashboard-header'>
+		<div style="width: 100%; display: inline-block">
 			<div id="dashboard-title">
 				<span>{{title}}</span>
 			</div>
@@ -41,6 +41,7 @@ export default {
 			margin: 46px;
 		}
 		.dashboard-tab-selector{
+			display: inline-block;
 			float: right;
 			margin: 40px;
 			.dashboard-tab-selector-button{

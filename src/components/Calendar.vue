@@ -44,7 +44,9 @@ export default {
 
 <style lang="scss">
 	#calendar{
-    width: 100%;
-    border: 1px rgb(230,236,245);
-  }
+		margin: 1em;
+		border: 1.4px solid $lightGray;
+		background: white;
+		border-radius: 6px;
+	}
 </style>
