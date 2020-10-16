@@ -151,5 +151,89 @@ export default {
 </script>
 
 <style lang="scss">
-  
+	.calendar-day{
+		padding: 5px;
+		position: relative;
+		.calendar-date-indicator{
+			font-size: 14px;
+			float: right;
+			border-radius: 100%;
+			background: rgb(228,245,245);
+			color: $primary;
+
+			padding: 9px 0;
+			width: 35px;
+			text-align: center;
+			margin: auto;
+			position: absolute;
+			right: 20px;
+		}
+		.calendar-active-date-indicator{
+			color: white;
+			background: $primary;
+		}
+		.calendar-disabled-date-indicator{
+			background: rgb(239,240,242);
+			color: rgb(192,193,201);
+		}
+		.calendar-day-meals{
+			font-size: 23px;
+			color: $black-text-color;
+			margin: 6px 0px;
+			span{
+				font-size: 30px;
+			}
+		}
+		.calendar-day-costumers{
+			color: rgb(135, 141, 168);
+			font-size: 14px;
+			margin: 0px;
+		}
+		.calendar-day-meals-type{
+			color: $black-text-color;
+			font-size: 14px;
+			margin-top: 33px;
+			p{
+				margin: 8px 0px;
+			}
+		}
+		.calendar-day-operation-area{
+			margin-top: 30px;
+			.calendar-day-details{
+				color: rgb(13,155,258);
+				text-decoration-line: none;
+			}
+		}
+		.calendar-day-operation img{
+			float: right;
+			position: relative;
+			right: 0px;
+			bottom: 27px;
+			transform: scaleX(-1);
+		}
+		.calendar-day-available{
+			height: 100%;
+		}
+		.calendar-day-orderless, .calendar-day-not-service, .calendar-day-blocked{
+			height: 100%;
+			text-align: center;
+			align-content: center;
+			display: grid;
+			font-size: 14px;
+			color: rgb(192,193,201);
+		}
+		.calendar-day-blocked{
+			color: rgb(180,0,0);
+		}
+		
+	}
+	.calendar-day-container{
+		width:calc(100% - 38px);
+		height:calc(100% - 38px);
+		padding: 19px;
+	}
+	.calendar-day-not-service > div{
+		
+		background: rgb(246,247,251);
+	}
 </style>

@@ -123,7 +123,15 @@ export default {
 	}
 	.weekday{
 		// float: left;
+		border-top: $lightGray 1px solid;
 		text-align: center;
+		text-transform: uppercase;
+		font-size: 14px;
+		color: rgb(142,143,161)
+	}
+	.day-block{
+		border: $lightGray 1px solid;
+		height: 253px;
 	}
 	.week-block{
 		display:grid;
