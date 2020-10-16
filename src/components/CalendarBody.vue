@@ -16,6 +16,7 @@
 				:is_today="day.is_today"
 				:data="day.actual_month?daysData[day.date-1]:NaN"
 				class="day-block"
+				@reload-data="reloadData"
 			/>
 		</div>
 	</div>
@@ -52,6 +53,9 @@ export default {
 		}
 	},
 	methods:{
+		reloadData: function(){
+			this.getData(this.date.month(),this.date.year())
+		},
 		getData: function(month,year){
 			var that = this
 			that.loading=true;

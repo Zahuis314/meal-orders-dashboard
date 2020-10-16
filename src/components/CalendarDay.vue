@@ -36,16 +36,16 @@
 					<span>No orders yet</span>
 				</div>
 			</div>
-			<a class="calendar-day-operation" :href="getUnBlockUrl()" v-if="data.is_blocked">
+			<a class="calendar-day-operation" :href="getUnBlockUrl()" @click="confirmUnblock" v-if="data.is_blocked">
 				<img src="../assets/red-block.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" :href="getBlockUrl()" v-else-if="data.meals==0">
+			<a class="calendar-day-operation" :href="getBlockUrl()" @click="confirmBlock" v-else-if="data.meals==0">
 				<img src="../assets/white-block.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" :href="getContinueUrl()" v-else-if="data.is_stopped">
+			<a class="calendar-day-operation" :href="getContinueUrl()" @click="confirmContinue" v-else-if="data.is_stopped">
 				<img src="../assets/red-hand.svg" alt="" height="20">
 			</a>
-			<a class="calendar-day-operation" :href="getStopUrl()" v-else-if="data.is_in_service">
+			<a class="calendar-day-operation" :href="getStopUrl()" @click="confirmStop" v-else-if="data.is_in_service">
 				<img src="../assets/white-hand.svg" alt="" height="20">
 			</a>
 		</div>
@@ -53,13 +53,77 @@
 </template>
 
 <script>
-
+import swal from 'sweetalert'
+import axios from 'axios'
 export default {
 	name: 'CalendarDay',
 	components: {
 	},
 	props: ['date','month','year','data','actual_month','is_today'],
 	methods:{
+		callSwal: function(text,destination){
+			swal({
+				title: "Are you sure?",
+				text: text,
+				icon: "warning",
+				buttons: {
+					cancel: {
+						text: "Cancel",
+						value: null,
+						visible: true,
+						className: "calendar-day-cancel-operation",
+						closeModal: true
+					},
+					confirm: {
+						text: "Continue",
+						value: true,
+						visible: true,
+						className: "calendar-day-continue-operation",
+						closeModal: true
+					}
+				},
+				dangerMode: true,
+			})
+			.then((willBlock) => {
+				if (willBlock){
+					axios.post(destination)
+					.then(
+						function(response){
+							console.log(response)
+							this.$emit('reload-data');
+						},
+						function(response){
+							console.log(response)
+						}
+					)
+					
+				}
+			})
+		},
+		confirmBlock: function(e){
+			e.preventDefault();
+			var destination = e.currentTarget.href;
+			this.callSwal("You will block this day and you won't be able to receive orders.\n\nIf you change your mind you will be able to re-activate the option to unlock the day and recieve new orders at any time.",destination);
+			this.$emit('reload-data');
+		},
+		confirmStop: function(e){
+			e.preventDefault();
+			var destination = e.currentTarget.href;
+			this.callSwal("You will stop receiving orders for this day.\n\nIf you change your mind you will be able to re-activate the option to recieve new orders at any time.",destination);
+			this.$emit('reload-data');
+		},
+		confirmUnblock: function(e){
+			e.preventDefault();
+			var destination = e.currentTarget.href;
+			axios.post(destination)
+			this.$emit('reload-data');
+		},
+		confirmContinue: function(e){
+			e.preventDefault();
+			var destination = e.currentTarget.href;
+			axios.post(destination)
+			this.$emit('reload-data');
+		},
 		contructUrl: function(baseUrl,apiUrl){
 			var url = new URL(apiUrl,baseUrl);
 			url.searchParams.set('day',this.date)
