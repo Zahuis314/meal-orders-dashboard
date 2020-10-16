@@ -42,8 +42,14 @@ export default {
 
 <style lang="scss">
 	#calendar-header{
+		padding: 17px;
 		>div{
 			display: inline-block;
+		}
+		#current-date>p{
+			font-size: 25px;
+			margin: 5px;
+			color: $black-text-color;
 		}
 	}
 </style>

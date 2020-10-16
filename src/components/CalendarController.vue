@@ -45,11 +45,37 @@ export default {
 </script>
 
 <style lang="scss">
+	.month-picker-input{
+		height: 11px;
+	}
 	#calendar-controller{  
 		float: right;
+		month-picker-input{
+			width: 100%;
+		}
 		>div{
 			display: inline-block;
 		}
-  
+	}
+	.month-picker-input-container{
+		width: 100% !important;
+	}
+	#date-current-month-selector{
+		margin: 0px 20px;
+	}
+	#calendar-controller{
+		button.calendar-button{
+			font-size: 14px;
+			background: white;
+			border: 1px solid $lightGray;
+			border-radius: 5px;
+			&#date-current-month-button{
+				padding: 11px 15px;
+				color: rgb(173,175,191)
+			}
+			&.date-manipulator-button{
+				padding: 11px 22px;
+			}
+		}
 	}
 </style>
