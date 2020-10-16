@@ -36,6 +36,18 @@
 					<span>No orders yet</span>
 				</div>
 			</div>
+			<a class="calendar-day-operation" href="#" v-if="data.is_blocked">
+				<img src="../assets/red-block.svg" alt="" height="20">
+			</a>
+			<a class="calendar-day-operation" href="#" v-else-if="data.meals==0">
+				<img src="../assets/white-block.svg" alt="" height="20">
+			</a>
+			<a class="calendar-day-operation" href="#" v-else-if="data.is_stopped">
+				<img src="../assets/red-hand.svg" alt="" height="20">
+			</a>
+			<a class="calendar-day-operation" href="#" v-else-if="data.is_in_service">
+				<img src="../assets/white-hand.svg" alt="" height="20">
+			</a>
 		</div>
 	</div>
 </template>
