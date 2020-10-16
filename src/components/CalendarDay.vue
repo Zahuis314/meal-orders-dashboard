@@ -28,7 +28,7 @@
 					<p>{{data.special_request}} special request</p>
 				</div>
 				<div class="calendar-day-operation-area">
-					<a href="#" class="calendar-day-details">All details</a>
+					<a :href="getDetailsUrl()" class="calendar-day-details">All details</a>
 				</div>
 			</div>
 			<div class="calendar-day-orderless" v-else-if="data.meals==0">
@@ -59,6 +59,18 @@ export default {
 	components: {
 	},
 	props: ['date','month','year','data','actual_month','is_today'],
+	methods:{
+		contructUrl: function(baseUrl,apiUrl){
+			var url = new URL(apiUrl,baseUrl);
+			url.searchParams.set('day',this.date)
+			url.searchParams.set('month',this.month)
+			url.searchParams.set('year',this.year)
+			return url;
+		},
+		getDetailsUrl: function(){
+			return this.contructUrl(this.config.api.baseUrl,this.config.api.detailsUrl).href;
+		}
+	}
 }
 </script>
 
