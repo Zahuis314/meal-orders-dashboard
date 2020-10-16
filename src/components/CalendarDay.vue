@@ -236,4 +236,39 @@ export default {
 		
 		background: rgb(246,247,251);
 	}
+	.swal-text{
+		text-align: center;
+		font-size: 18px;
+	}
+	.swal-button{
+		font-size: 18px;
+		color: white;
+		border-radius: 27px;
+		height: 55px;
+		width: 250px;
+	}
+	.swal-button-container{
+		.swal-button-container {
+			margin: 31px;
+			display: inline-block;
+			position: relative;
+		}
+	}
+	.swal-button--cancel{
+		background-color: rgb(208,212,217);
+	}
+	.swal-button--confirm{
+		background-color: rgb(239, 107, 109);
+	}
+	.swal-modal{
+		width: 671px;
+		height: 548px;
+	}
+	.swal-footer{
+		top: 100px;
+		position: relative;
+		>div:first-child{
+			float:left;
+		}
+	}
 </style>
