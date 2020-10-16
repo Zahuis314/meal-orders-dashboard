@@ -1,6 +1,14 @@
 <template>
 	<div id="calendar-controller">
-
+		<div id="date-selector">
+			<IconMonthPicker @change="changeDate"
+				:editable-year="true"
+				:input-pre-filled="true"
+				:show-year=true
+				:default-month=date.month() 
+				:default-year=date.year()>
+				</IconMonthPicker>
+		</div>
 		<div id="date-current-month-selector">
 			<button id="date-current-month-button" class="calendar-button" @click="selectCurrentMonth">Current month</button>
 		</div>
@@ -12,11 +20,13 @@
 </template>
 
 <script>
+import IconMonthPicker  from './IconMonthPicker.vue'
 
 export default {
 	name: 'CalendarController',
 	props: ['date'],
 	components:{
+			IconMonthPicker
 	},
 	methods: {
 		selectCurrentMonth: function(){
