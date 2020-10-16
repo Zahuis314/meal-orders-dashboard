@@ -16,7 +16,7 @@ npm run build
 ```
 ### Configuración
 
-
+El proyecto contiene un archivo config.js dentro de la carpeta src, donde se encuentran las direcciones de la API, en caso de que se quiera modificar.
 
 ### Estructura de los datos
 
